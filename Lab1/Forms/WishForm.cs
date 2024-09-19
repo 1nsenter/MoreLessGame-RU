@@ -77,7 +77,7 @@ namespace Lab1.Forms
         private void Win()
         {
             MessageBox.Show($"Игра окончена. Бот выявил, что загаданное число - {botNums.WishedNumber}. " +
-                $"Количнство затраченных попыток = {attemp}.", "Бот победил", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                $"Количeство затраченных попыток = {attemp}.", "Бот победил", MessageBoxButtons.OK, MessageBoxIcon.Question);
 
             ResetGame();
         }
@@ -104,10 +104,10 @@ namespace Lab1.Forms
                 bool success = RestartGame();
 
                 if (success)
-                    ShowSetWishNumverForm();
+                    ShowSetWishNumberForm();
             }
             else
-                ShowSetWishNumverForm();
+                ShowSetWishNumberForm();
             
         }
 
@@ -125,7 +125,7 @@ namespace Lab1.Forms
             return false;
         }
 
-        private void ShowSetWishNumverForm()
+        private void ShowSetWishNumberForm()
         {
             SetWishNumberForm setWishNumberForm = new(gameNums);
             setWishNumberForm.ShowDialog();

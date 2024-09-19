@@ -23,6 +23,8 @@ namespace Lab1
             WishedNumber = wishedNumber;
             MinNumber = minNumber;
             MaxNumber = maxNumber;
+
+            _usedNumbers.Add(wishedNumber);
         }
 
         public bool SetWishedNumber(int num)
@@ -58,11 +60,26 @@ namespace Lab1
         public void RandomizeWishedNumber()
         {
             Random random = new();
-            int randomizedNumber = WishedNumber;
 
-            while (randomizedNumber == WishedNumber)
+            int randomizedNumber;
+            bool isUnique;
+
+            while (true)
             {
                 randomizedNumber = random.Next(MinNumber, MaxNumber + 1);
+                isUnique = true;
+
+                foreach (int num in _usedNumbers)
+                {
+                    if (randomizedNumber == num)
+                    {
+                        isUnique = false;
+                        break;
+                    }
+                }
+
+                if (isUnique)
+                    break;
             }
 
             WishedNumber = randomizedNumber;
