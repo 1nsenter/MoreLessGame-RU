@@ -35,6 +35,7 @@
             // 
             // MainLabel
             // 
+            MainLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             MainLabel.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             MainLabel.Location = new Point(11, 9);
             MainLabel.Name = "MainLabel";
@@ -43,6 +44,7 @@
             // 
             // SetWishButton
             // 
+            SetWishButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             SetWishButton.BackColor = SystemColors.Control;
             SetWishButton.FlatAppearance.BorderSize = 0;
             SetWishButton.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -56,6 +58,7 @@
             // 
             // MainTextBox
             // 
+            MainTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             MainTextBox.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             MainTextBox.Location = new Point(100, 71);
             MainTextBox.Name = "MainTextBox";

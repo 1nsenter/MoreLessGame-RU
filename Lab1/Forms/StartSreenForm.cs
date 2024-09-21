@@ -25,7 +25,8 @@ namespace Lab1.Forms
 
         private void GuessButton_Click(object sender, EventArgs e)
         {
-
+            GuessForm guessForm = new();
+            guessForm.ShowDialog();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

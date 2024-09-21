@@ -35,6 +35,7 @@
             // 
             // WishButton
             // 
+            WishButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             WishButton.Font = new Font("Bahnschrift Condensed", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             WishButton.Location = new Point(50, 40);
             WishButton.Name = "WishButton";
@@ -46,6 +47,7 @@
             // 
             // GuessButton
             // 
+            GuessButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             GuessButton.Font = new Font("Bahnschrift Condensed", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             GuessButton.Location = new Point(50, 120);
             GuessButton.Name = "GuessButton";
@@ -57,6 +59,7 @@
             // 
             // CloseButton
             // 
+            CloseButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CloseButton.Font = new Font("Bahnschrift Condensed", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             CloseButton.Location = new Point(50, 200);
             CloseButton.Name = "CloseButton";

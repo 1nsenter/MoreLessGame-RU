@@ -12,9 +12,9 @@ namespace Lab1.Forms
 {
     public partial class SetWishNumberForm : Form
     {
-        private Wish _wishNums;
+        private GameInfo _wishNums;
 
-        public SetWishNumberForm(Wish wishNums)
+        public SetWishNumberForm(GameInfo wishNums)
         {
             InitializeComponent();
 

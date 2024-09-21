@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    public class Wish
+    public class GameInfo
     {
-        public delegate void WishNumbersHandler();
-        public event WishNumbersHandler? OnWishedNumberChanged;
-        public event WishNumbersHandler? OnMinMaxChanged;
+        public delegate void GameInfoHandler();
+        public event GameInfoHandler? OnWishedNumberChanged;
+        public event GameInfoHandler? OnMinMaxChanged;
 
         private List<int> _usedNumbers = new();
 
@@ -18,7 +18,7 @@ namespace Lab1
         public int MinNumber {  get; private set; }
         public int MaxNumber { get; private set; }
 
-        public Wish(int wishedNumber = 0, int minNumber = 1, int maxNumber = 100)
+        public GameInfo(int wishedNumber = 0, int minNumber = 1, int maxNumber = 100)
         {
             WishedNumber = wishedNumber;
             MinNumber = minNumber;
@@ -45,17 +45,32 @@ namespace Lab1
 
         public void SetMinNumber(int num)
         {
-            MinNumber = num;
-            OnMinMaxChanged?.Invoke();
+            if (num < MaxNumber)
+            {
+                MinNumber = num;
+                OnMinMaxChanged?.Invoke();
+            }
+            else
+                ShowMinMaxSetError("Минимальное значение не может быть больше максимального!");
         }
         public void SetMaxNumber(int num)
         {
-            MaxNumber = num;
-            OnMinMaxChanged?.Invoke();
+            if (num > MinNumber)
+            {
+                MaxNumber = num;
+                OnMinMaxChanged?.Invoke();
+            }
+            else
+                ShowMinMaxSetError("Максимальное значение не может быть меньше минимального!");
+        }
+
+        private void ShowMinMaxSetError(string message)
+        {
+            MessageBox.Show(message, "Произошла ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         /// <summary>
-        /// Select a random number between a MinNumber and MaxNumber value 
+        /// Select a uniqe random number between a MinNumber and MaxNumber value
         /// </summary>
         public void RandomizeWishedNumber()
         {
@@ -66,8 +81,9 @@ namespace Lab1
 
             while (true)
             {
-                randomizedNumber = random.Next(MinNumber, MaxNumber + 1);
                 isUnique = true;
+
+                randomizedNumber = random.Next(MinNumber, MaxNumber + 1);
 
                 foreach (int num in _usedNumbers)
                 {

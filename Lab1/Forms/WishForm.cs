@@ -12,8 +12,8 @@ namespace Lab1.Forms
 {
     public partial class WishForm : Form
     {
-        private Wish gameNums;
-        private Wish botNums;
+        private GameInfo gameInfo;
+        private GameInfo botGameInfo;
 
         private int attemp = 0;
 
@@ -25,59 +25,57 @@ namespace Lab1.Forms
 
         private void ResetGame()
         {
-            InitializeWishNumbers();
+            attemp = 0;           
+            InitializeGameInfo();
             InitializeEvents();
             UpdateUI();
-            attemp = 0;
-            MainTextBox.Text = "Для начала игры загадайте число.";
         }
 
-        public void InitializeWishNumbers()
+        public void InitializeGameInfo()
         {
-            gameNums = new Wish();
-            botNums = new Wish();
+            gameInfo = new GameInfo();
+            botGameInfo = new GameInfo();
         }
 
         public void InitializeEvents()
         {
-            gameNums.OnWishedNumberChanged += UpdateUI;
-            gameNums.OnWishedNumberChanged += MakeABotMove;
-            botNums.OnMinMaxChanged += MakeABotMove;
+            gameInfo.OnWishedNumberChanged += UpdateUI;
+            gameInfo.OnWishedNumberChanged += MakeAMove;
+            botGameInfo.OnMinMaxChanged += MakeAMove;
         }
 
         private void UpdateUI()
         {
-            if (gameNums.WishedNumber < gameNums.MinNumber ||
-                gameNums.WishedNumber > gameNums.MaxNumber)
+            if (gameInfo.WishedNumber < gameInfo.MinNumber ||
+                gameInfo.WishedNumber > gameInfo.MaxNumber)
             {
-                WishedNumberTextBox.Text = string.Empty;
+                MainTextBox.Text = "Для начала игры загадайте число.";
+                WishedNumberLabel.Text = string.Empty;
                 MoreButton.Enabled = false;
                 LessButton.Enabled = false;
             }
             else
             {
-                WishedNumberTextBox.Text = gameNums.WishedNumber.ToString();
+                WishedNumberLabel.Text = "Загаданное число: " + gameInfo.WishedNumber.ToString();
                 MoreButton.Enabled = true;
                 LessButton.Enabled = true;
             }
-
         }
 
-        private void MakeABotMove()
+        private void MakeAMove()
         {
-            
-            botNums.RandomizeWishedNumber();
+            botGameInfo.RandomizeWishedNumber();
             attemp++;
-            MainTextBox.Text = $"Предположу, что ваше число - {botNums.WishedNumber}";
+            MainTextBox.Text = $"Предположу, что ваше число - {botGameInfo.WishedNumber}";
 
-            if (botNums.WishedNumber == gameNums.WishedNumber)
-                Win();
+            if (botGameInfo.WishedNumber == gameInfo.WishedNumber)
+                BotWin();
         }
 
-        private void Win()
+        private void BotWin()
         {
-            MessageBox.Show($"Игра окончена. Бот выявил, что загаданное число - {botNums.WishedNumber}. " +
-                $"Количeство затраченных попыток = {attemp}.", "Бот победил", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            MessageBox.Show($"Игра окончена. Бот выявил, что загаданное число - {botGameInfo.WishedNumber}. " +
+                $"Количeство затраченных попыток - {attemp}.", "Бот победил", MessageBoxButtons.OK, MessageBoxIcon.Question);
 
             ResetGame();
         }
@@ -89,17 +87,30 @@ namespace Lab1.Forms
 
         private void MoreButton_Click(object sender, EventArgs e)
         {
-            botNums.SetMinNumber(botNums.WishedNumber);
+            if (gameInfo.WishedNumber > botGameInfo.WishedNumber)
+                botGameInfo.SetMinNumber(botGameInfo.WishedNumber);
+            else
+                PlayerWin();
         }
 
         private void LessButton_Click(object sender, EventArgs e)
         {
-            botNums.SetMaxNumber(botNums.WishedNumber);
+            if (gameInfo.WishedNumber < botGameInfo.WishedNumber)
+                botGameInfo.SetMaxNumber(botGameInfo.WishedNumber);
+            else
+                PlayerWin();
+        }
+
+        private void PlayerWin()
+        {
+            MessageBox.Show("Поздравляю! Вы победили, обманув бота.", "Победа игрока",
+                MessageBoxButtons.OK, MessageBoxIcon.Question);
+            ResetGame();
         }
 
         private void WishButton_Click(object sender, EventArgs e)
         {
-            if (gameNums.WishedNumber != 0)
+            if (gameInfo.WishedNumber != 0)
             {
                 bool success = RestartGame();
 
@@ -108,7 +119,6 @@ namespace Lab1.Forms
             }
             else
                 ShowSetWishNumberForm();
-            
         }
 
         public bool RestartGame()
@@ -127,8 +137,13 @@ namespace Lab1.Forms
 
         private void ShowSetWishNumberForm()
         {
-            SetWishNumberForm setWishNumberForm = new(gameNums);
+            SetWishNumberForm setWishNumberForm = new(gameInfo);
             setWishNumberForm.ShowDialog();
+        }
+
+        private void RestartButton_Click(object sender, EventArgs e)
+        {
+            RestartGame();
         }
     }
 }
