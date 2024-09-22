@@ -36,11 +36,13 @@
             // MainLabel
             // 
             MainLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            MainLabel.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            MainLabel.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             MainLabel.Location = new Point(11, 9);
             MainLabel.Name = "MainLabel";
             MainLabel.Size = new Size(211, 55);
             MainLabel.TabIndex = 0;
+            MainLabel.Text = "Введите число от n до nnn";
+            MainLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // SetWishButton
             // 

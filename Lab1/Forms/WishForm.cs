@@ -65,7 +65,8 @@
         private void BotWin()
         {
             MessageBox.Show($"Игра окончена. Бот выявил, что загаданное число - {botGameInfo.WishedNumber}. " +
-                $"Количeство затраченных попыток - {attemp}.", "Бот победил", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                $"Количeство затраченных попыток - {attemp}.", "Бот победил",
+                MessageBoxButtons.OK, MessageBoxIcon.Question);
 
             ResetGame();
         }

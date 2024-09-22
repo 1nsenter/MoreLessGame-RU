@@ -58,10 +58,8 @@
                 ShowMinMaxSetError("Максимальное значение не может быть меньше минимального!");
         }
 
-        private void ShowMinMaxSetError(string message)
-        {
+        private void ShowMinMaxSetError(string message) =>
             MessageBox.Show(message, "Произошла ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
 
         /// <summary>
         /// Select a uniqe random number between a MinNumber and MaxNumber value
@@ -91,10 +89,8 @@
                     break;
             }
 
-            WishedNumber = randomizedNumber;
-
-            _usedNumbers.Add(WishedNumber);
-            OnWishedNumberChanged?.Invoke();
+            _usedNumbers.Add(randomizedNumber);
+            SetWishedNumber(randomizedNumber);
         }
     }
 }
