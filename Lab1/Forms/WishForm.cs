@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Lab1.Forms
+﻿namespace Lab1.Forms
 {
     public partial class WishForm : Form
     {
@@ -80,11 +70,6 @@ namespace Lab1.Forms
             ResetGame();
         }
 
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void MoreButton_Click(object sender, EventArgs e)
         {
             if (gameInfo.WishedNumber > botGameInfo.WishedNumber)
@@ -144,6 +129,11 @@ namespace Lab1.Forms
         private void RestartButton_Click(object sender, EventArgs e)
         {
             RestartGame();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

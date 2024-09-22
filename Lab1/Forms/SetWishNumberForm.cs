@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Lab1.Forms
+﻿namespace Lab1.Forms
 {
     public partial class SetWishNumberForm : Form
     {
-        private GameInfo _wishNums;
+        private GameInfo _gameInfo;
 
-        public SetWishNumberForm(GameInfo wishNums)
+        public SetWishNumberForm(GameInfo gameInfo)
         {
             InitializeComponent();
 
-            _wishNums = wishNums;
+            _gameInfo = gameInfo;
 
-            MainLabel.Text = $"Введите число между {_wishNums.MinNumber} и {_wishNums.MaxNumber}.";
+            MainLabel.Text = $"Введите число между {_gameInfo.MinNumber} и {_gameInfo.MaxNumber}.";
         }
 
         private void SetWishButton_Click(object sender, EventArgs e)
@@ -30,7 +20,7 @@ namespace Lab1.Forms
 
             if (int.TryParse(MainTextBox.Text, out wishedNumber))
             {
-                success = _wishNums.SetWishedNumber(wishedNumber);
+                success = _gameInfo.SetWishedNumber(wishedNumber);
 
                 if (success)
                     this.Close();
@@ -38,8 +28,11 @@ namespace Lab1.Forms
                     MainTextBox.Text = string.Empty;
             }
             else
+            {
+                MainTextBox.Text = string.Empty;
                 MessageBox.Show("Введены некорректные данные. Попробуйте еще раз", "Произошла ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
