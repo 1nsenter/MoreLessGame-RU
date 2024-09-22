@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Lab1.Forms
+﻿namespace Lab1.Forms
 {
     public partial class GuessForm : Form
     {
@@ -61,11 +50,6 @@ namespace Lab1.Forms
             {
                 GuessAttempsLabel.Visible = true;
             }
-        }
-
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void RestartButton_Click(object sender, EventArgs e)
@@ -132,5 +116,10 @@ namespace Lab1.Forms
 
             ResetGame();
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        } 
     }
 }
